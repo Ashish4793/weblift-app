@@ -1,0 +1,160 @@
+<%- include('partials/header.ejs') %>
+
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <%- include('partials/sidebar.ejs') %>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Top Navigation -->
+      <%- include('partials/topbar.ejs') %>
+
+
+      <!-- Main Content Area -->
+      <main class="flex-1 overflow-y-auto bg-dark-900 p-6">
+        <div class="max-w-4xl mx-auto">
+          <!-- Page Header -->
+          <div class="mb-8">
+            <h1 class="text-2xl font-bold">Settings</h1>
+            <p class="text-gray-400 mt-1">Manage your personal information and account settings</p>
+          </div>
+
+          <!-- Profile Tabs -->
+          <div class="mb-6 border-b border-dark-600">
+            <nav class="flex -mb-px">
+              <a href="#" class="text-white border-b-2 border-white px-4 py-2 text-sm font-medium">Personal Info</a>
+            </nav>
+          </div>
+
+          <!-- Profile Info -->
+          <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden mb-8">
+            <div class="p-6 border-b border-dark-600">
+              <h2 class="text-lg font-medium">Personal Information</h2>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-col md:flex-row items-start mb-8">
+                <% 
+  function getInitials(name) {
+    if (!name) return "U"; // Default to "U" if no name is provided
+
+    const words = name.trim().split(" ");
+    let initials = words[0][0]; // First letter of the first word
+
+    if (words.length > 1) {
+      initials += words[words.length - 1][0]; // First letter of the last word
+    }
+
+    return initials.toUpperCase();
+  }
+
+  const initials = getInitials(user.name); // Assuming 'user.name' is passed from the server
+%>
+                <div class="w-24 h-24 rounded-full bg-blue-700 flex items-center justify-center mb-4 md:mb-0 md:mr-6">
+                  <span class="text-3xl font-medium"><%= initials %></span>
+                </div>
+                <div class="flex-1">
+                  <p class="text-2xl font-bold text-zinc-100 md:mt-4"><%= user.name %></p>
+                  <span class="inline-flex mt-2 items-center gap-x-1.5 py-1.5 px-3 rounded-md text-xs font-medium border shadow-2xs bg-neutral-900 border-green-700 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#66ba4f" viewBox="0 0 256 256"><path d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-11.55,39.29c-4.79,5-9.75,10.17-12.38,16.52-2.52,6.1-2.63,13.07-2.73,19.82-.1,7-.21,14.33-3.32,17.43s-10.39,3.22-17.43,3.32c-6.75.1-13.72.21-19.82,2.73-6.35,2.63-11.52,7.59-16.52,12.38S132,224,128,224s-9.15-4.92-14.11-9.69-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82-2.63-6.35-7.59-11.52-12.38-16.52S32,132,32,128s4.92-9.15,9.69-14.11,9.75-10.17,12.38-16.52c2.52-6.1,2.63-13.07,2.73-19.82.1-7,.21-14.33,3.32-17.43S70.51,56.9,77.55,56.8c6.75-.1,13.72-.21,19.82-2.73,6.35-2.63,11.52-7.59,16.52-12.38S124,32,128,32s9.15,4.92,14.11,9.69,10.17,9.75,16.52,12.38c6.1,2.52,13.07,2.63,19.82,2.73,7,.1,14.33.21,17.43,3.32s3.22,10.39,3.32,17.43c.1,6.75.21,13.72,2.73,19.82,2.63,6.35,7.59,11.52,12.38,16.52S224,124,224,128,219.08,137.15,214.31,142.11ZM173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34Z"></path></svg>
+                    GitHub Verified</span>
+                </div>
+              </div>
+
+              <form>
+
+                <div class="mb-6">
+                  <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
+                  <input readonly type="email" id="email" value="<%= user.email %>" class="w-full bg-dark-700 border border-dark-600 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500">
+                </div>
+
+                <div class="mb-6">
+                  <label for="username" class="block text-sm font-medium mb-2">GitHub Username</label>
+                  <div class="flex">
+                    <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-dark-600 bg-dark-600 text-gray-400 text-sm">
+                      github.com/
+                    </span>
+                    <input readonly type="text" id="username" value="<%= user.githubUserName %>" class="flex-1 bg-dark-700 border border-dark-600 rounded-r-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500">
+                  </div>
+                </div>
+
+                <div class="mb-6">
+                  <label for="timezone" class="block text-sm font-medium mb-2">Country</label>
+                  <select disabled id="timezone" class="w-full bg-dark-700 border border-dark-600 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500">
+                    <option>🇮🇳 India</option>
+                  </select>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+          <!-- Account Settings -->
+          <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden mb-8">
+            <div class="p-6 border-b border-dark-600">
+              <h2 class="text-lg font-medium">Account Settings</h2>
+            </div>
+            <div class="p-6">
+              <div class="mb-6">
+                <h3 class="text-sm font-medium mb-2">Account Type</h3>
+                <div class="flex items-center justify-between p-4 bg-dark-700 rounded-md">
+                  <div>
+                    <p class="font-medium">Personal Account (Free)</p>
+                    <p class="text-sm text-gray-400 mt-1">For individual developers and small projects</p>
+                  </div>
+                  <button class="px-4 py-2 bg-dark-600 rounded-md text-sm text-gray-300 hover:text-white">
+                    Upgrade
+                  </button>
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="text-sm font-medium mb-2">Language Preference</h3>
+                <select class="w-full bg-dark-700 border border-dark-600 rounded-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500">
+                  <option>English (US)</option>
+                  <option>Spanish</option>
+                  <option>French</option>
+                  <option>German</option>
+                  <option>Japanese</option>
+                </select>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="text-sm font-medium mb-2">Email Notifications</h3>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <input type="checkbox" id="notify-deployments" checked class="mr-3">
+                    <label for="notify-deployments">Deployment notifications</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" id="notify-marketing" class="mr-3">
+                    <label for="notify-marketing">Marketing and product updates</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex justify-end">
+                <button class="bg-white text-black font-medium px-4 py-2 rounded-md hover:bg-gray-200 transition-colors">
+                  Save Preferences
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delete Account -->
+          <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
+            <div class="p-6 border-b border-dark-600">
+              <h2 class="text-lg font-medium text-red-500">Delete Account</h2>
+            </div>
+            <div class="p-6">
+              <p class="mb-4">Permanently delete your account and all associated data. This action cannot be undone.</p>
+              <button class="px-4 py-2 bg-red-900 text-red-300 rounded-md hover:bg-red-800 transition-colors">
+                Delete Account
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <%- include('partials/footer.ejs') %>

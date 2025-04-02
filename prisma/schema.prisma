@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  
+}
+
+model User {
+  id                String    @id @default(uuid())
+  email             String    @unique
+  name              String
+  oauthId           String    @unique
+  oauthProvider     String
+  githubUserName    String
+  githubAccessToken String
+  projects          Project[] // One-to-Many relationship with Project
+  createdAt         DateTime  @default(now())
+}
+
+model Project {
+  id           String    @id @default(uuid())
+  projectId    String    @unique
+  name         String    @unique
+  instanceData Json
+  status       ProjectStatus @default(building)
+  framework    Framework
+  repoMetaData Json
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)  // If user is deleted, delete all projects
+  userId       String
+  deployments  Deployment[]
+  createdAt    DateTime  @default(now())
+}
+
+model Deployment {
+  id           String   @id @default(uuid())
+  deploymentId String   @unique
+  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade) // If project is deleted, delete all deployments
+  projectId    String
+  commitMetaData Json
+  configMetaData Json
+  status       DeploymentStatus @default(building)
+  deployedAt   DateTime @default(now())
+}
+
+
+
+model Session {
+  sid       String  @id
+  sess      Json
+  expire    DateTime
+}
+
+enum DeploymentStatus {
+  building
+  success
+  failed
+}
+
+enum ProjectStatus {
+  building
+  live
+  error
+}
+
+enum Framework {
+  express
+  react
+  nextjs
+  vite
+  django
+}

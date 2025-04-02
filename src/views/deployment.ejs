@@ -1,0 +1,264 @@
+
+<%- include('partials/header.ejs') %>
+<script>
+  dayjs.extend(window.dayjs_plugin_relativeTime); // Enable "fromNow()" functionality
+
+  function formatTime(timestamp) {
+      return dayjs(timestamp).fromNow();
+      
+  }
+ 
+  document.addEventListener("DOMContentLoaded", () => {
+    const deployedAt = "<%= deployment.deployedAt %>"; // Get date from EJS
+    const formattedDate = dayjs(deployedAt).format("MMMM D, YYYY [at] HH:mm");
+    document.getElementById("dDate").innerText = formattedDate;
+  });
+</script>
+
+
+<div class="flex h-screen">
+    <!-- Sidebar (same as dashboard) -->
+    <%- include('partials/sidebar.ejs') %>
+
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Top Navigation -->
+      <%- include('partials/topbar.ejs') %>
+
+
+      <!-- Main Content Area -->
+      <main class="flex-1 overflow-y-auto bg-dark-900 p-6">
+        <div class="max-w-7xl mx-auto">
+          <!-- Deployment Header -->
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+            <div class="flex items-center">
+
+              <div>
+                <div class="flex items-center">
+                  <h1 class="text-xl font-bold">Deployment</h1>
+                  <% if(deployment.status === 'building') { %>
+                    <span class="ml-3 px-2 py-1 text-xs rounded-full bg-yellow-900 text-yellow-300">
+                      <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-1 inline-block"></span>
+                      Building
+                    </span>
+                  <% } else if(deployment.status === 'success') { %>
+                    <span class="ml-3 px-2 py-1 text-xs rounded-full bg-green-900 text-green-300">
+                      <span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-1 inline-block"></span>
+                      Success
+                    </span>
+                  <% } else { %>
+                      <span class="ml-3 px-2 py-1 text-xs rounded-full bg-red-900 text-red-300">
+                        <span class="w-1.5 h-1.5 rounded-full bg-red-400 mr-1 inline-block"></span>
+                        Failed
+                      </span>
+                  <% } %>
+                  
+                </div>
+                <div class="flex items-center mt-1 text-md text-gray-400">
+                  <span class="text-blue-400 underline">ID : #<%= deployment.deploymentId %></span>
+                  <span class="mx-2">•</span>
+                  <span>
+                    <script>document.write(formatTime("<%= deployment.deployedAt %>"));</script>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
+              <a target="_blank" href="https://<%= deployment.project.instanceData.subdomain %>" class="bg-white text-black font-medium px-4 py-2 rounded-md hover:bg-gray-200 transition-colors inline-flex items-center">
+                <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#000000" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+                  <path d="M8 12C8 18 12 22 12 22C12 22 16 18 16 12C16 6 12 2 12 2C12 2 8 6 8 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                  <path d="M21 15H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M21 9H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+                Visit
+              </a>
+              <button class="bg-dark-700 text-white font-medium px-4 py-2 rounded-md hover:bg-dark-600 transition-colors inline-flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Redeploy
+              </button>
+            </div>
+          </div>
+
+          <!-- Deployment Info -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Deployment Status Card -->
+            <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
+              <div class="p-6">
+                <h2 class="text-lg font-medium mb-4">Deployment Status</h2>
+                <div class="space-y-3">
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Status</span>
+                    <span class="flex items-center">
+                      <% if(deployment.status === 'building') { %>
+                        <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-1"></span>
+                        Building
+                      <% } else if(deployment.status === 'success') { %>
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-1"></span>
+                        Success
+                      <% } else { %>
+                        <span class="w-1.5 h-1.5 rounded-full bg-red-400 mr-1"></span>
+                        Error
+                      <% } %>
+                    </span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Deployment URL</span>
+                    <a target="_blank"  href="https://<%= deployment.project.instanceData.subdomain %>" class="hover:underline hover:text-blue-400" ><%= deployment.project.instanceData.subdomain %></a>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Deployed at</span>
+                    <span id="dDate"></span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Project Name</span>
+                    <span><%= deployment.project.name %></span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Project ID</span>
+                    <a href="/project/<%= deployment.project.projectId %>" class="text-blue-400 hover:underline">weblift/<%= deployment.project.projectId %></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        
+            <!-- Deployment Source Card -->
+            <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
+              <div class="p-6">
+                <h2 class="text-lg font-medium mb-4">Deployment Source</h2>
+                <div class="space-y-3">
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Repository</span>
+                    <a target="_blank" href="https://github.com/<%= deployment.project.repoMetaData.repoUrl %>" class="text-blue-400 trim hover:underline">github/<%= deployment.project.repoMetaData.repoName %></a>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Branch</span>
+                    <span><%= deployment.project.repoMetaData.repoBranch %></span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Commit</span>
+                    <a target="_blank" href="https://github.com/<%= deployment.project.repoMetaData.repoUrl %>/commit/<%= deployment.commitMetaData.repoCommitHash %>" class="text-blue-400 hover:underline"><%= deployment.commitMetaData.repoCommitHash %></a>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Commit Message</span>
+                    <span class="text-right truncate mr-2 ml-3"><%= deployment.commitMetaData.repoLastCommitMsg %></span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deployment Tabs -->
+          <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden mb-8">
+            <div class="border-b border-dark-600">
+              <div class="flex">
+                <button class="px-6 py-3 text-sm font-medium border-b-2 border-white">Build Logs</button>
+              </div>
+            </div>
+            <div class="p-6">
+              <!-- App Logs -->
+              <div class="bg-dark-900 rounded-md p-4 font-mono text-sm overflow-auto h-96">
+                <div class="text-gray-400">[14:32:01] Build started</div>
+                <div class="text-gray-400">[14:32:02] Cloning repository...</div>
+                <div class="text-gray-400">[14:32:05] Installing dependencies...</div>
+                <div class="text-gray-400">[14:32:45] > npm install</div>
+                <div class="text-gray-400">[14:32:45] added 1250 packages in 40s</div>
+                <div class="text-gray-400">[14:32:46] Running build command...</div>
+                <div class="text-gray-400">[14:32:46] > npm run build</div>
+                <div class="text-gray-400">[14:32:47] > next build</div>
+                <div class="text-gray-400">[14:32:50] info  - Loaded env from /vercel/path0/.env</div>
+                <div class="text-gray-400">[14:32:51] info  - Checking validity of types</div>
+                <div class="text-gray-400">[14:32:55] info  - Creating an optimized production build</div>
+                <div class="text-gray-400">[14:33:10] info  - Compiled successfully</div>
+                <div class="text-gray-400">[14:33:10] info  - Collecting page data</div>
+                <div class="text-gray-400">[14:33:15] info  - Generating static pages (25/25)</div>
+                <div class="text-gray-400">[14:33:18] info  - Finalizing page optimization</div>
+                <div class="text-gray-400">[14:33:20] Route (pages)</div>
+                <div class="text-gray-400">[14:33:20] ├─ / (ISR: 60 Seconds) (1121 ms)</div>
+                <div class="text-gray-400">[14:33:20] ├─ /products (ISR: 60 Seconds) (1250 ms)</div>
+                <div class="text-gray-400">[14:33:20] ├─ /cart (1024 ms)</div>
+                <div class="text-gray-400">[14:33:20] ├─ /checkout (1156 ms)</div>
+                <div class="text-gray-400">[14:33:20] └─ /404 (315 ms)</div>
+                <div class="text-gray-400">[14:33:21] Uploading build outputs...</div>
+                <div class="text-green-400">[14:33:24] Build completed successfully</div>
+              </div>
+            </div>
+          </div>
+
+         <!-- Config Info -->
+         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- Config Info Card -->
+          <div class="bg-dark-800 col-span-2 rounded-lg border border-dark-600 overflow-hidden">
+            <div class="p-6">
+              <h2 class="text-lg font-medium mb-4">Deployment Configuration</h2>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Build Command</span>
+                  <% if(deployment.configMetaData.buildCommand == ""){ %>
+                    Not specified
+                  <% } else { %>
+                    <%= deployment.configMetaData.buildCommand %>
+                  <% } %>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Root Directory</span>
+                  <% if(deployment.configMetaData.rootDirectory == ""){ %>
+                    ./
+                  <% } else { %>
+                  <%= deployment.configMetaData.rootDirectory %>
+                  <% } %>                
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Start Command</span>
+                  <span><%= deployment.configMetaData.startCommand %></span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Install Command</span>
+                  <span><%= deployment.configMetaData.installCommand %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      
+          <!-- Deployment Source Card -->
+          <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
+            <div class="p-6">
+              <h2 class="text-lg font-medium mb-4">Deployment Actions</h2>
+              <div class="space-y-3">
+                <button class="px-4 py-3 bg-dark-700 rounded-md w-full text-sm text-center hover:bg-dark-600 transition-colors flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  Redeploy
+                </button>
+                <button class="px-4 py-3 bg-dark-700 w-full rounded-md text-sm text-center hover:bg-dark-600 transition-colors flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                  </svg>
+                  Download Logs
+                </button>
+                <button class="px-4 py-3 bg-red-900 w-full text-red-300 rounded-md text-sm text-center hover:bg-red-800 transition-colors flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                  Delete Deployment
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+     
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <%- include('partials/footer.ejs') %>

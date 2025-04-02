@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebLift</title>
+  
+  <link rel="icon" href="../images/logo.svg" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+  <style>
+    body {
+        font-family: "Varela Round", sans-serif;
+    }
+
+    #typewriter {
+      display: inline-block;
+      min-width: 9ch; /* Adjust this based on the longest word */
+      text-align: left; /* Ensures smooth transitions */
+    }
+  </style>
+
+<script>
+    window.onload = (event) => {
+      var app = document.getElementById('typewriter');
+  
+      var typewriter = new Typewriter(app, {
+        loop: true,
+        delay: 75,
+      });
+  
+      typewriter
+        .pauseFor(100)
+        .typeString('Instantly!')
+        .pauseFor(1000)
+        .deleteChars(10)
+        .typeString('Securely!')
+        .pauseFor(1000)
+        .deleteChars(10)
+        .typeString('Efficiently!')
+        .pauseFor(1000)
+        .deleteChars(10)
+        .start();
+    };  
+</script>
+</head>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              900: '#000000',
+              800: '#111111',
+              700: '#1a1a1a',
+              600: '#222222',
+              500: '#2a2a2a',
+            }
+          },
+          fontFamily: {
+            sans: ['Varela Round', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+<body class="bg-dark-900 text-white min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-dark-900 border-b border-dark-600 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="/">
+                    <div class="flex items-center">
+                        <img class="w-8 h-8 mr-2" src="../images/logo.svg" alt="logo">
+                        <span class="text-xl font-bold">WebLift</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-300 hover:text-white">Features</a>
+                    <a href="#frameworks" class="text-gray-300 hover:text-white">Frameworks</a>
+                    <a href="#pricing" class="text-gray-300 hover:text-white">Pricing</a>
+                    <a href="/docs" class="text-gray-300 hover:text-white">Documentation</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <a href="/auth" class="text-gray-300 text-sm hover:text-white">Login</a>
+                    <a href="/dashboard"
+                        class="bg-white inline-flex text-black text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-200 transition-colors">
+                        <svg class="mt-0.5 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" color="#000" fill="none">
+                            <path d="M13.6903 19.4567C13.5 18.9973 13.5 18.4149 13.5 17.25C13.5 16.0851 13.5 15.5027 13.6903 15.0433C13.944 14.4307 14.4307 13.944 15.0433 13.6903C15.5027 13.5 16.0851 13.5 17.25 13.5C18.4149 13.5 18.9973 13.5 19.4567 13.6903C20.0693 13.944 20.556 14.4307 20.8097 15.0433C21 15.5027 21 16.0851 21 17.25C21 18.4149 21 18.9973 20.8097 19.4567C20.556 20.0693 20.0693 20.556 19.4567 20.8097C18.9973 21 18.4149 21 17.25 21C16.0851 21 15.5027 21 15.0433 20.8097C14.4307 20.556 13.944 20.0693 13.6903 19.4567Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                            <path d="M13.6903 8.95671C13.5 8.49728 13.5 7.91485 13.5 6.75C13.5 5.58515 13.5 5.00272 13.6903 4.54329C13.944 3.93072 14.4307 3.44404 15.0433 3.1903C15.5027 3 16.0851 3 17.25 3C18.4149 3 18.9973 3 19.4567 3.1903C20.0693 3.44404 20.556 3.93072 20.8097 4.54329C21 5.00272 21 5.58515 21 6.75C21 7.91485 21 8.49728 20.8097 8.95671C20.556 9.56928 20.0693 10.056 19.4567 10.3097C18.9973 10.5 18.4149 10.5 17.25 10.5C16.0851 10.5 15.5027 10.5 15.0433 10.3097C14.4307 10.056 13.944 9.56928 13.6903 8.95671Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                            <path d="M3.1903 19.4567C3 18.9973 3 18.4149 3 17.25C3 16.0851 3 15.5027 3.1903 15.0433C3.44404 14.4307 3.93072 13.944 4.54329 13.6903C5.00272 13.5 5.58515 13.5 6.75 13.5C7.91485 13.5 8.49728 13.5 8.95671 13.6903C9.56928 13.944 10.056 14.4307 10.3097 15.0433C10.5 15.5027 10.5 16.0851 10.5 17.25C10.5 18.4149 10.5 18.9973 10.3097 19.4567C10.056 20.0693 9.56928 20.556 8.95671 20.8097C8.49728 21 7.91485 21 6.75 21C5.58515 21 5.00272 21 4.54329 20.8097C3.93072 20.556 3.44404 20.0693 3.1903 19.4567Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                            <path d="M3.1903 8.95671C3 8.49728 3 7.91485 3 6.75C3 5.58515 3 5.00272 3.1903 4.54329C3.44404 3.93072 3.93072 3.44404 4.54329 3.1903C5.00272 3 5.58515 3 6.75 3C7.91485 3 8.49728 3 8.95671 3.1903C9.56928 3.44404 10.056 3.93072 10.3097 4.54329C10.5 5.00272 10.5 5.58515 10.5 6.75C10.5 7.91485 10.5 8.49728 10.3097 8.95671C10.056 9.56928 9.56928 10.056 8.95671 10.3097C8.49728 10.5 7.91485 10.5 6.75 10.5C5.58515 10.5 5.00272 10.5 4.54329 10.3097C3.93072 10.056 3.44404 9.56928 3.1903 8.95671Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                        </svg>
+                        Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Deploy Your Web Projects <span id="typewriter"
+                    class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"></span>
+            </h1>
+            <p class="text-xl md:text-2xl text-zinc-400 mb-10 max-w-3xl mx-auto">WebLift helps developers deploy web
+                applications with just a few clicks. No complex configuration, just push and deploy.</p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+                <a href="/dashboard"
+                    class="bg-white inline-flex text-black font-medium px-6 py-3 rounded-md hover:bg-gray-200 transition-colors">
+                    <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256"><path d="M223.85,47.12a16,16,0,0,0-15-15c-12.58-.75-44.73.4-71.41,27.07L132.69,64H74.36A15.91,15.91,0,0,0,63,68.68L28.7,103a16,16,0,0,0,9.07,27.16l38.47,5.37,44.21,44.21,5.37,38.49a15.94,15.94,0,0,0,10.78,12.92,16.11,16.11,0,0,0,5.1.83A15.91,15.91,0,0,0,153,227.3L187.32,193A15.91,15.91,0,0,0,192,181.64V123.31l4.77-4.77C223.45,91.86,224.6,59.71,223.85,47.12ZM74.36,80h42.33L77.16,119.52,40,114.34Zm74.41-9.45a76.65,76.65,0,0,1,59.11-22.47,76.46,76.46,0,0,1-22.42,59.16L128,164.68,91.32,128ZM176,181.64,141.67,216l-5.19-37.17L176,139.31Zm-74.16,9.5C97.34,201,82.29,224,40,224a8,8,0,0,1-8-8c0-42.29,23-57.34,32.86-61.85a8,8,0,0,1,6.64,14.56c-6.43,2.93-20.62,12.36-23.12,38.91,26.55-2.5,36-16.69,38.91-23.12a8,8,0,1,1,14.56,6.64Z"></path></svg>
+                    Start Deploying for Free
+                </a>
+                <a href="/docs"
+                    class="bg-dark-700 text-white font-medium px-6 py-3 rounded-md hover:bg-dark-600 transition-colors">
+                    Read Documentation
+                </a>
+            </div>
+
+            <div class="relative mx-auto max-w-5xl">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-xl">
+                </div>
+                <div class="relative bg-dark-800 border border-dark-600 rounded-lg overflow-hidden shadow-2xl shadow-gray-600">
+                    <img src="../images/dashboard-mockup.png" alt="WebLift Dashboard Preview"
+                        class="w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-dark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose WebLift?</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Our platform is designed to make deployment simple,
+                    fast, and reliable for developers of all skill levels.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-dark-700 rounded-lg p-8 border border-dark-600">
+                    <div class="w-12 h-12 bg-blue-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Instant Deployments</h3>
+                    <p class="text-gray-400">Push your code and get a live URL instantly. No waiting, no complex setup.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-dark-700 rounded-lg p-8 border border-dark-600">
+                    <div class="w-12 h-12 bg-purple-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Automatic HTTPS</h3>
+                    <p class="text-gray-400">Every site gets free SSL certificates automatically. Your users are always
+                        protected.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-dark-700 rounded-lg p-8 border border-dark-600">
+                    <div class="w-12 h-12 bg-green-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Global CDN</h3>
+                    <p class="text-gray-400">Your sites are automatically distributed to our global edge network for
+                        maximum performance.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-dark-700 rounded-lg p-8 border border-dark-600">
+                    <div class="w-12 h-12 bg-red-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Environment Variables</h3>
+                    <p class="text-gray-400">Securely manage environment variables for different deployment
+                        environments.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-dark-700 rounded-lg p-8 border border-dark-600">
+                    <div class="w-12 h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Analytics</h3>
+                    <p class="text-gray-400">Get insights into your application's performance and user behavior with
+                        built-in analytics.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-dark-700 rounded-lg p-8 border border-dark-600">
+                    <div class="w-12 h-12 bg-indigo-900/30 rounded-lg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Serverless Functions</h3>
+                    <p class="text-gray-400">Deploy backend code without managing servers. Scale automatically as
+                        needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frameworks Section -->
+    <section id="frameworks" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Supported Frameworks</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">WebLift works with all major frontend frameworks and
+                    static site generators.</p>
+            </div>
+
+            <div class="grid grid-cols-5 gap-2 md:gap-8">
+                <!-- Framework 1: React -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-dark-700 rounded-full flex items-center justify-center mb-4">
+                        <svg viewBox="0 0 24 24" class="w-12 h-12" fill="#61DAFB">
+                            <path
+                                d="M12 9.861A2.139 2.139 0 1 0 12 14.139 2.139 2.139 0 1 0 12 9.861zM6.008 16.255l-.472-.12C2.018 15.246 0 13.737 0 11.996s2.018-3.25 5.536-4.139l.472-.119.133.468a23.53 23.53 0 0 0 1.363 3.578l.101.213-.101.213a23.307 23.307 0 0 0-1.363 3.578l-.133.467zM5.317 8.95c-2.674.751-4.315 1.9-4.315 3.046 0 1.145 1.641 2.294 4.315 3.046a24.95 24.95 0 0 1 1.182-3.046A24.752 24.752 0 0 1 5.317 8.95zM17.992 16.255l-.133-.469a23.357 23.357 0 0 0-1.364-3.577l-.101-.213.101-.213a23.42 23.42 0 0 0 1.364-3.578l.133-.468.473.119c3.517.889 5.535 2.398 5.535 4.14s-2.018 3.25-5.535 4.139l-.473.12zm-.491-4.259c.48 1.039.877 2.06 1.182 3.046 2.675-.752 4.315-1.901 4.315-3.046 0-1.146-1.641-2.294-4.315-3.046a24.788 24.788 0 0 1-1.182 3.046zM5.31 8.945l-.133-.467C4.188 4.992 4.488 2.494 6 1.622c1.483-.856 3.864.155 6.359 2.716l.34.349-.34.349a23.552 23.552 0 0 0-2.422 2.967l-.135.193-.235.02a23.657 23.657 0 0 0-3.785.61l-.472.119zm1.896-6.63c-.268 0-.505.058-.705.173-.994.573-1.17 2.565-.485 5.253a25.122 25.122 0 0 1 3.233-.501 24.847 24.847 0 0 1 2.052-2.544c-1.56-1.519-3.037-2.381-4.095-2.381zM16.795 22.677c-.001 0-.001 0 0 0-1.425 0-3.255-1.073-5.154-3.023l-.34-.349.34-.349a23.53 23.53 0 0 0 2.421-2.968l.135-.193.234-.02a23.63 23.63 0 0 0 3.787-.609l.472-.119.134.468c.987 3.484.688 5.983-.824 6.854a2.38 2.38 0 0 1-1.205.308zm-4.096-3.381c1.56 1.519 3.037 2.381 4.095 2.381h.001c.267 0 .505-.058.704-.173.994-.573 1.171-2.566.485-5.254a25.02 25.02 0 0 1-3.234.501 24.674 24.674 0 0 1-2.051 2.545zM18.69 8.945l-.472-.119a23.479 23.479 0 0 0-3.787-.61l-.234-.02-.135-.193a23.414 23.414 0 0 0-2.421-2.967l-.34-.349.34-.349C14.135 1.778 16.515.767 18 1.622c1.512.872 1.812 3.37.824 6.855l-.134.468zM14.75 7.24c1.142.104 2.227.273 3.234.501.686-2.688.509-4.68-.485-5.253-.988-.571-2.845.304-4.8 2.208A24.849 24.849 0 0 1 14.75 7.24zM7.206 22.677A2.38 2.38 0 0 1 6 22.369c-1.512-.871-1.812-3.369-.823-6.854l.132-.468.472.119c1.155.291 2.429.496 3.785.609l.235.02.134.193a23.596 23.596 0 0 0 2.422 2.968l.34.349-.34.349c-1.898 1.95-3.728 3.023-5.151 3.023zm-1.19-6.427c-.686 2.688-.509 4.681.485 5.254.987.563 2.843-.305 4.8-2.208a24.998 24.998 0 0 1-2.052-2.545 24.976 24.976 0 0 1-3.233-.501zM12 16.878c-.823 0-1.669-.036-2.516-.106l-.235-.02-.135-.193a30.388 30.388 0 0 1-1.35-2.122 30.354 30.354 0 0 1-1.166-2.228l-.1-.213.1-.213a30.3 30.3 0 0 1 1.166-2.228c.414-.716.869-1.43 1.35-2.122l.135-.193.235-.02a29.785 29.785 0 0 1 5.033 0l.234.02.134.193a30.006 30.006 0 0 1 2.517 4.35l.101.213-.101.213a29.6 29.6 0 0 1-2.517 4.35l-.134.193-.234.02c-.847.07-1.694.106-2.517.106zm-2.197-1.084c1.48.111 2.914.111 4.395 0a29.006 29.006 0 0 0 2.196-3.798 28.585 28.585 0 0 0-2.197-3.798 29.031 29.031 0 0 0-4.394 0 28.477 28.477 0 0 0-2.197 3.798 29.114 29.114 0 0 0 2.197 3.798z" />
+                        </svg>
+                    </div>
+                    <span class="font-medium">React</span>
+                </div>
+                <!-- Framework 2: Node.js -->
+
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-dark-700 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48">
+                            <linearGradient id="NRNx2IPDe7PJlJvrxOKgWa_MWiBjkuHeMVq_gr1" x1="24" x2="24" y1="43.734" y2="4.266" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0a070a"></stop><stop offset=".465" stop-color="#2b2b2b"></stop><stop offset="1" stop-color="#4b4b4b"></stop></linearGradient><circle cx="24" cy="24" r="19.734" fill="url(#NRNx2IPDe7PJlJvrxOKgWa_MWiBjkuHeMVq_gr1)"></circle><rect width="3.023" height="15.996" x="15.992" y="16.027" fill="#fff"></rect><linearGradient id="NRNx2IPDe7PJlJvrxOKgWb_MWiBjkuHeMVq_gr2" x1="30.512" x2="30.512" y1="33.021" y2="18.431" gradientUnits="userSpaceOnUse"><stop offset=".377" stop-color="#fff" stop-opacity="0"></stop><stop offset=".666" stop-color="#fff" stop-opacity=".3"></stop><stop offset=".988" stop-color="#fff"></stop></linearGradient><rect width="2.953" height="14.59" x="29.035" y="15.957" fill="url(#NRNx2IPDe7PJlJvrxOKgWb_MWiBjkuHeMVq_gr2)"></rect><linearGradient id="NRNx2IPDe7PJlJvrxOKgWc_MWiBjkuHeMVq_gr3" x1="22.102" x2="36.661" y1="21.443" y2="40.529" gradientUnits="userSpaceOnUse"><stop offset=".296" stop-color="#fff"></stop><stop offset=".521" stop-color="#fff" stop-opacity=".5"></stop><stop offset=".838" stop-color="#fff" stop-opacity="0"></stop></linearGradient><polygon fill="url(#NRNx2IPDe7PJlJvrxOKgWc_MWiBjkuHeMVq_gr3)" points="36.781,38.094 34.168,39.09 15.992,16.027 19.508,16.027"></polygon>
+                            </svg>
+                    </div>
+                    <span class="font-medium">Next.js</span>
+                </div>
+
+                <!-- Framework 3: Vite -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-dark-700 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
+                            <linearGradient id="oOTIjsOjTqJdvfy5S4iCZa_dJjTWMogzFzg_gr1" x1="13.315" x2="38.005" y1="514.906" y2="481.377" gradientTransform="matrix(1 0 0 -1 0 514)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#41d1ff"></stop><stop offset="1" stop-color="#9231be"></stop></linearGradient><path fill="url(#oOTIjsOjTqJdvfy5S4iCZa_dJjTWMogzFzg_gr1)" d="M44.86,9.976L25.023,45.448c-0.41,0.732-1.462,0.737-1.878,0.008L2.915,9.979 C2.462,9.185,3.141,8.223,4.041,8.384l19.859,3.55c0.127,0.023,0.256,0.022,0.383-0.001l19.443-3.544 C44.623,8.225,45.305,9.18,44.86,9.976z"></path><linearGradient id="oOTIjsOjTqJdvfy5S4iCZb_dJjTWMogzFzg_gr2" x1="25.502" x2="37.131" y1="508.764" y2="428.99" gradientTransform="matrix(1 0 0 -1 0 514)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fed100"></stop><stop offset="1" stop-color="#e36001"></stop></linearGradient><path fill="url(#oOTIjsOjTqJdvfy5S4iCZb_dJjTWMogzFzg_gr2)" d="M33.574,3.01L19.019,5.862c-0.239,0.047-0.416,0.25-0.431,0.493l-0.895,15.121 c-0.021,0.356,0.306,0.633,0.654,0.552l4.052-0.935c0.379-0.087,0.722,0.246,0.644,0.628l-1.204,5.895 c-0.081,0.397,0.291,0.736,0.679,0.618l2.503-0.76c0.388-0.118,0.761,0.222,0.679,0.62l-1.913,9.26 c-0.12,0.579,0.651,0.895,0.972,0.398l0.215-0.332l11.86-23.669c0.199-0.396-0.144-0.848-0.579-0.764l-4.171,0.805 c-0.392,0.076-0.725-0.289-0.615-0.673l2.722-9.438C34.301,3.299,33.967,2.933,33.574,3.01z"></path>
+                        </svg>
+                    </div>
+                    <span class="font-medium">Vite</span>
+                </div>
+
+                <!-- Framework 4: Django -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-dark-700 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50" fill="#ffffff">
+                            <path d="M50,24.939C50,28.564,47.573,31,43.961,31c-1.332,0-2.499-0.333-3.441-0.934c-0.151,0.843-0.414,1.576-0.867,2.258 C38.847,33.545,37.197,35,33.909,35c-1.244,0-2.332-0.192-3.423-0.605l-1.292-0.489V31c0,0-10.791,0-11.29,0 c-0.966,0-1.734-0.148-2.36-0.384c-0.099,0.29-0.208,0.573-0.352,0.846c-0.618,1.2-1.471,1.988-2.945,2.721l-0.867,0.431 l-0.876-0.413L8.169,33.1l-5.267-2.924l0.011-0.001C1.047,29.198,0,27.392,0,24.944c0-3.413,2.25-5.869,5.561-6.197V17v-2h10.456v2 v2.397C16.874,19.14,17.747,19,18.662,19c1.366,0,2.313,0.329,2.983,0.772l0.528-0.144C23.764,19.194,25.077,19,26.431,19 c1.788,0,3.16,0.497,4.081,1.479c0.132,0.141,0.247,0.284,0.353,0.43C32.094,19.77,33.992,19,36.758,19 c1.188,0,2.322,0.119,3.677,0.387l0.877,0.173C42.116,19.2,43.038,19,44.059,19C47.612,19,50,21.387,50,24.939z M7.561,17v3.839 c-0.376-0.097-0.825-0.13-1.233-0.13C3.697,20.709,2,22.376,2,24.944C2,27.609,3.6,28.997,6.675,29 c1.027,0,2.036-0.097,3.325-0.343V17H7.561L7.561,17z M7.561,22.865v4.044c-0.36,0.049-0.724,0.065-1.003,0.065 c-1.289,0-1.992-0.739-1.992-2.078c0-1.375,0.735-2.16,2.008-2.16C6.885,22.736,7.266,22.768,7.561,22.865L7.561,22.865z M11.487,21v4.916c0,2.169-0.113,2.994-0.473,3.706c-0.343,0.696-0.881,1.153-1.992,1.669l2.336,1.101 c1.111-0.552,1.649-1.052,2.057-1.845C13.852,29.722,14,28.765,14,26.776V21H11.487z M11.5,19.558h2.517V17H11.5V19.558z M15.496,23.596c0.933-0.486,1.928-0.739,2.812-0.739c0.604,0,0.822,0.159,0.822,0.598v0.533c-2.935,0.25-4.13,1.035-4.13,2.734 C15,28.293,15.899,29,17.904,29c0.992,0,2.344-0.112,3.416-0.268v-4.918c0-1.007-0.065-1.477-0.265-1.839 C20.698,21.33,19.891,21,18.662,21c-1.103,0-2.113,0.221-3.169,0.723L15.496,23.596z M19.237,25.572v1.621 c-0.465,0.078-0.791,0.109-1.148,0.109c-0.653,0-0.949-0.221-0.949-0.692C17.14,25.98,17.655,25.728,19.237,25.572L19.237,25.572z M22.7,29H25v-5.843c0.477-0.146,0.843-0.177,1.168-0.177c0.847,0,1.243,0.352,1.243,1.295V29h2.29v-4.823 c0-1.229-0.157-1.805-0.649-2.331C28.529,21.288,27.648,21,26.431,21c-1.171,0-2.327,0.174-3.731,0.557V29z M31.195,30.268v2.256 C32.077,32.858,32.927,33,33.909,33c1.931,0,3.29-0.589,4.075-1.778c0.538-0.812,0.72-1.794,0.72-3.889v-0.667 c-0.017-0.334-0.017-0.667-0.033-1.001l-0.016-1.334L38.623,23.3v-0.255c0.506,0.047-0.11-0.06,0.561,0.066l0.863-1.762 C38.837,21.11,37.838,21,36.758,21C33.079,21,31,22.57,31,25.348c0,2.237,1.405,3.65,3.613,3.65c0.652,0,1.145-0.098,1.635-0.334 v0.047c0,1.554-0.704,2.206-2.355,2.206C32.959,30.917,32.077,30.712,31.195,30.268L31.195,30.268z M36.2,23.158l0.017,0.809 l0.016,1.126c0,0.334,0.017,0.651,0.017,0.938v0.667v0.177c-0.324,0.095-0.604,0.157-0.947,0.157c-1.113,0-1.735-0.699-1.735-1.919 c0-0.856,0.311-1.46,0.914-1.793c0.393-0.239,0.967-0.365,1.457-0.349h0.182H36.2V23.158z M40,25.077 C40,27.497,41.511,29,43.961,29C46.443,29,48,27.435,48,24.939C48,22.504,46.505,21,44.059,21C41.561,21,40.004,22.565,40,25.077z M44.008,27.075c-0.952,0-1.511-0.759-1.511-2.078c0-1.319,0.556-2.078,1.527-2.078c0.939,0,1.478,0.775,1.478,2.078 C45.503,26.316,44.948,27.075,44.008,27.075L44.008,27.075z"></path>
+                            </svg>
+                    </div>
+                    <span class="font-medium">Django</span>
+                </div>
+
+                <!-- Framework 5: Express -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-dark-700 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50" fill="#ffffff">
+                            <path d="M49.729 11h-.85c-1.051 0-2.041.49-2.68 1.324l-8.7 11.377-8.7-11.377C28.162 11.49 27.171 11 26.121 11h-.85l10.971 14.346L25.036 40h.85c1.051 0 2.041-.49 2.679-1.324L37.5 26.992l8.935 11.684C47.073 39.51 48.063 40 49.114 40h.85L38.758 25.346 49.729 11zM21.289 34.242c-2.554 3.881-7.582 5.87-12.389 4.116C4.671 36.815 2 32.611 2 28.109L2 27h12v0h11l0-4.134c0-6.505-4.818-12.2-11.295-12.809C6.273 9.358 0 15.21 0 22.5l0 5.573c0 5.371 3.215 10.364 8.269 12.183 6.603 2.376 13.548-1.17 15.896-7.256 0 0 0 0 0 0h-.638C22.616 33 21.789 33.481 21.289 34.242zM2 22.5C2 16.71 6.71 12 12.5 12S23 16.71 23 22.5V25H2V22.5z"></path>
+                            </svg>
+                    </div>
+                    <span class="font-medium">Express.js</span>
+                </div>
+                
+
+            </div>
+        </div>
+    </section>
+
+<%- include('partials/footer.ejs') %>
