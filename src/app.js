@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config({ path: "../.env" });
 import express from "express";
 import sessionMiddleware from "./config/sessionStore.js";
 import passport from "passport";

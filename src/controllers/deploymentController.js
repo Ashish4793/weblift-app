@@ -34,7 +34,7 @@ const ssmClient = new SSMClient({
 export const deploymentInitiate = async (req, res) => {
     try {
         const { projectName , githubRepo, customRepoUrl, installCommand, branchName , framework, rootDirectory, buildCommand, machineType, startCommand, envVariables } = req.body;
-       
+        const startDirectory = 'cd app'
         // Use githubRepo if customRepo is empty
         const repoUrl = customRepoUrl.trim() ? customRepoUrl : githubRepo.trim();
     
@@ -110,6 +110,7 @@ export const deploymentInitiate = async (req, res) => {
                 sudo -u ec2-user bash -c "${buildCommand}" >> /home/ec2-user/app/logs.log 2>&1
                 
                 log_message "Starting application..."
+                sudo -u ec2-user bash -c "${startDirectory}" >> /home/ec2-user/app/logs.log 2>&1
                 nohup sudo -u ec2-user bash -c "${startCommand}" >> /home/ec2-user/app/logs.log 2>&1 &
                 
                 # Create NGINX configuration
