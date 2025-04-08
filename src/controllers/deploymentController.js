@@ -1,5 +1,4 @@
 import { EC2Client, RunInstancesCommand, DescribeInstancesCommand } from '@aws-sdk/client-ec2';
-import { SSMClient, SendCommandCommand } from '@aws-sdk/client-ssm';
 import { PrismaClient } from "@prisma/client";
 import { customAlphabet } from 'nanoid';
 import { getRepoDetails } from '../utils/githubFunctions.js';
@@ -10,20 +9,12 @@ const prisma = new PrismaClient();
 const REGION = 'ap-south-1';
 const AMI_ID = 'ami-07ccd5b62d2233ddb';
 const SECURITY_GROUP_ID = 'sg-0b34e34d59a58cb23';
-
+                    
 const nanoid7 = customAlphabet('1234567890ABCDEF', 7); 
 const nanoid12 = customAlphabet('1234567890ABCDEFGH', 12);
 
 // Initialize EC2 and SSM clients
 const ec2Client = new EC2Client({
-    region: REGION,
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    }
-});
-
-const ssmClient = new SSMClient({
     region: REGION,
     credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -210,8 +201,3 @@ export const deploymentInitiate = async (req, res) => {
         res.status(500).render('500');
     }
 }
-
-
-// export const checkDeploymentStatus = async (req,res) => {
-
-// }
