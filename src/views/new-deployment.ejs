@@ -548,9 +548,15 @@
           notyf.error('Please enter a valid Custom Repo URL.');
         } else {
           // Allow form submission and show success notification
-          setTimeout(() => {
-            notyf.success('Deployment Initiated...');
-          }, 1000); // Delay slightly to ensure the form submission happens
+          // setTimeout(() => {
+          //   notyf.success('Deployment Initiated...');
+          // }, 1000); // Delay slightly to ensure the form submission happens
+
+          //Lock Temporarily Deployment Service
+          event.preventDefault();
+          notyf.error("Deployment service down!");
+          return;
+
         }
       });
 

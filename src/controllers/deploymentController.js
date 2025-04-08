@@ -22,6 +22,10 @@ const ec2Client = new EC2Client({
     }
 });
 
+export const deploymentInitiateFake = async (req, res) => {
+    res.status(200).json('ok');
+}
+
 export const deploymentInitiate = async (req, res) => {
     try {
         const { projectName , githubRepo, customRepoUrl, installCommand, branchName , framework, rootDirectory, buildCommand, machineType, startCommand, envVariables } = req.body;
